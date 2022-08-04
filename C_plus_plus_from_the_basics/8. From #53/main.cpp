@@ -1,14 +1,21 @@
-//
-//  main.cpp
-//  8. From #53
-//
-//  Created by Sokrat on 04.08.2022.
-//
+//Динамическая память. Операторы выделения new и delete. Null pointer
 
 #include <iostream>
+using namespace std;
+const char NEW_LINE = '\n';
+const char TAB = '\t';
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+int main()
+{
+    
+    //new и delete на примере переменных. Null pointer.
+    int *pa = new int;
+    cout << pa << NEW_LINE;
+    *pa = 10;
+    cout << *pa << NEW_LINE;
+    delete pa;
+    pa = nullptr;
+    cout << pa << NEW_LINE;
+    
+
 }
