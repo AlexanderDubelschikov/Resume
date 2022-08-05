@@ -1,5 +1,4 @@
-//Динамическая память. Операторы выделения new и delete. Null pointer.Динамические массивы. Действия над
-//динамическим массивом.
+//Динамическая память. Операторы выделения new и delete. Null pointer.Динамические массивы. Двумерный динамический массив.
 
 #include <iostream>
 #include <ctime>
@@ -67,16 +66,53 @@ int main()
     cout<<NEW_LINE;*/
     
 
-}
-
-
-
-void FillArray()
-{
+    //Двумерный динамический массив
+    /*int rows, cols;
+    cin >> rows;
+    cin >> cols;
     
+    //Создание массива указателей
+    int **arr = new int* [rows];
+    for (int i=0; i<rows; i++)
+    {
+        arr[i]=new int [cols];
+    }
+    
+    //Заполнение массива
+    for (int i=0; i<rows; i++)
+    {
+        for (int j=0; j<cols; j++)
+        {
+            arr[i][j] = j;
+        }
+    }
+    
+    //Вывод массива
+    for (int i=0; i<rows; i++)
+    {
+        for (int j=0; j<cols; j++)
+        {
+            cout << arr[i][j] << TAB;
+        }
+        cout << NEW_LINE;
+    }
+    
+    
+    //Отчистка массива
+    for (int i=0; i<rows; i++)
+    {
+        delete [] arr[i];
+    }
+    delete [] arr;*/
+    
+
+
+    return 0;
+    
+
 }
 
-void ShowArray()
-{
-    
-}
+
+
+
+
