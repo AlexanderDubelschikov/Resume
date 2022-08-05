@@ -8,6 +8,9 @@ const char NEW_LINE = '\n';
 const char TAB = '\t';
 int arr_sup;
 
+void NumArray(int *size);
+void FillArray(int* const arr, const int size);
+void ShowArray(const int* const arr, const int size);
 
 int main()
 {
@@ -105,14 +108,44 @@ int main()
     }
     delete [] arr;*/
     
-
-
-    return 0;
+    //Через функции
+    int size;
+    int *psize = &size;
+    NumArray(psize);
+    //cout << "Введи количество элементов в массиве: " << NEW_LINE;
+    //cin >> size;
+    int *arr = new int[size];
+    FillArray(arr,size);
+    ShowArray(arr, size);
+    delete [] arr;
     
+    return 0;
 
 }
 
+//Определение количества переменных
+void NumArray(int* const size)
+{
+    cout << "Введи количество переменных: " << TAB;
+    cin >> *size;
+}
 
+//Заполнение массива
+void FillArray(int* const arr, const int size)
+{
+    for (int i = 0; i<size; i++)
+    {
+        arr[i]=rand()%20;
+    }
+}
 
-
-
+//Вывод массива
+void ShowArray(const int* const arr, const int size)
+{
+    for (int i = 0; i<size; i++)
+    {
+        cout << arr[i] << TAB;
+    }
+    
+    cout << NEW_LINE;
+}
