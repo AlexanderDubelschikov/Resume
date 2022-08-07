@@ -6,7 +6,7 @@
 using namespace std;
 const char NEW_LINE = '\n';
 const char TAB = '\t';
-int arr_sup;
+int arr_sup, value;
 
 void NumArray(int *size);
 void FillArray(int* const arr, const int size);
@@ -175,6 +175,49 @@ int main()
     delete [] arr3;
     ShowArray(arr, size2);
     ShowArray(arr2, size);*/
+    
+    //Добовление эелемента в конце (без функции) и начале
+    /*int size;
+    int *pSize = &size;
+    NumArray(pSize);
+    int *arr = new int [size];
+    FillArray(arr, size);
+    ShowArray(arr, size);
+    int value;
+    //Добавление в конец
+    cout << "Какое число добавить в конце? " << NEW_LINE;
+    cin >> value;
+    int *arr2 = new int [size];
+    CopyArray(arr2, arr, size);
+    int size2=size+1;
+    delete [] arr;
+    arr = new int [size2];
+    CopyArray(arr,arr2, size);
+    arr[size]=value;
+    size=size2;
+    delete [] arr2;
+    ShowArray(arr, size);
+    //Добавление в начаоло
+    cout << "Какое число добавить в начало? " << NEW_LINE;
+    cin >> value;
+    arr2 = new int [size];
+    CopyArray(arr2, arr, size);
+    size2=size+1;
+    delete [] arr;
+    arr = new int [size2];
+    arr [0] = value;
+    for (int i=1; i<size2; i++)
+    {
+        arr[i]=arr2[i-1];
+    }
+    size=size2;
+    delete [] arr2;
+    ShowArray(arr, size);
+     
+     delete [] arr;*/
+    
+    //Добавление элементов через функции
+     
 
     return 0;
 
@@ -234,5 +277,4 @@ void CopyDifArray(int* arr, int* arr2, const int size)
     arr2 = new int [size];
     CopyArray(arr, arr2, size);
 }
-
 
