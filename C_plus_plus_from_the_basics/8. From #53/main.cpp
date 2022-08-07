@@ -1,4 +1,4 @@
-//Динамическая память. Операторы выделения new и delete. Null pointer.Динамические массивы. Двумерный динамический массив.
+//Динамическая память. Операторы выделения new и delete. Null pointer.Динамические массивы. Двумерный динамический массив. Операции с динамическими массивами. Копирование массивов с одинаковым и разным количеством элементов. Свап массивов с одинаковым количеством элементов.
 
 #include <iostream>
 #include <ctime>
@@ -11,6 +11,9 @@ int arr_sup;
 void NumArray(int *size);
 void FillArray(int* const arr, const int size);
 void ShowArray(const int* const arr, const int size);
+void CopyArray(int* const arr, int* const arr2, const int size);
+void SwapArray(int* const arr, int* const arr2, const int size);
+void CopyDifArray(int* arr, int* arr2, const int size);
 
 int main()
 {
@@ -67,7 +70,6 @@ int main()
     
     delete [] arr;
     cout<<NEW_LINE;*/
-    
 
     //Двумерный динамический массив
     /*int rows, cols;
@@ -108,17 +110,72 @@ int main()
     }
     delete [] arr;*/
     
-    //Через функции
-    int size;
+    //Через функции, копирование и свап массивов с одинаковой длиной
+    /*int size;
     int *psize = &size;
     NumArray(psize);
-    //cout << "Введи количество элементов в массиве: " << NEW_LINE;
-    //cin >> size;
+    int size2;
+    int *psize2 = &size2;
+    NumArray(psize2);
+    
     int *arr = new int[size];
+    int *arr2 = new int[size2];
+    cout << "Изначальное заполнение масивов:" << NEW_LINE;
     FillArray(arr,size);
     ShowArray(arr, size);
+    FillArray(arr2,size2);
+    ShowArray(arr2, size2);
+    cout << "Копирование массивов одинакового размера" << NEW_LINE;
+    CopyArray(arr,arr2,size);
+    ShowArray(arr, size);
+    ShowArray(arr2, size2);
+    cout << "Новые массивы: " << NEW_LINE;
+    FillArray(arr,size);
+    ShowArray(arr, size);
+    FillArray(arr2,size2);
+    ShowArray(arr2, size2);
+    cout << "Перемена их местами: " << NEW_LINE;
+    SwapArray(arr, arr2, size);
+    ShowArray(arr, size);
+    ShowArray(arr2, size2);
     delete [] arr;
+    delete [] arr2;*/
     
+    //Свап и копирование массивов разной длины
+    /*int size, size2;
+    cout << "Введи длину массива: " << NEW_LINE;
+    cin >> size;
+    cout << "Введи длину массива: " << NEW_LINE;
+    cin >> size2;
+    int *arr = new int [size];
+    int *arr2 = new int [size2];
+    cout << "Изначальные массивы" << NEW_LINE;
+    FillArray(arr, size);
+    ShowArray(arr, size);
+    FillArray(arr2, size2);
+    ShowArray(arr2, size2);
+    cout << "Копирование массивов" << NEW_LINE;
+    CopyDifArray(arr, arr2, size2);
+    ShowArray(arr, size2);
+    ShowArray(arr2, size2);
+    cout << "Новые массивы" << NEW_LINE;
+    FillArray(arr, size);
+    ShowArray(arr, size);
+    FillArray(arr2, size2);
+    ShowArray(arr2, size2);
+    cout << "Свап" << NEW_LINE;
+    int *arr3 = new int [size];
+    CopyArray(arr3, arr, size);
+    delete [] arr;
+    arr = new int [size2];
+    CopyArray(arr, arr2, size2);
+    delete [] arr2;
+    arr2 = new int [size];
+    CopyArray(arr2, arr3, size);
+    delete [] arr3;
+    ShowArray(arr, size2);
+    ShowArray(arr2, size);*/
+
     return 0;
 
 }
@@ -149,3 +206,33 @@ void ShowArray(const int* const arr, const int size)
     
     cout << NEW_LINE;
 }
+
+//Копирование массивов c одинаковым размером (первый сделать вторым)
+void CopyArray(int* const arr, int* const arr2, const int size)
+{
+    for (int i=0; i<size; i++)
+    {
+        arr[i]=arr2[i];
+    }
+}
+
+//Смена местами двух одинаковых массивов
+void SwapArray(int* const arr, int* const arr2, const int size)
+{
+    int *arr3 = new int [size];
+    CopyArray(arr3, arr, size);
+    CopyArray(arr, arr2, size);
+    CopyArray(arr2, arr3, size);
+    delete [] arr3;
+    
+}
+
+//Копирование двух массивов с разлияным размером
+void CopyDifArray(int* arr, int* arr2, const int size)
+{
+    delete [] arr2;
+    arr2 = new int [size];
+    CopyArray(arr, arr2, size);
+}
+
+
