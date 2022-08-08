@@ -32,14 +32,23 @@ int main()
     int b = 34.333;
     cout << b << NEW_LINE;*/
     
-    //ASCII (из-за работы в xCode проблемы с ру сиволами, несмотря на setlocale)
+    //ASCII (из-за работы в xCode проблемы с ру сиволами, несмотря на setlocale);
     /*cout << sizeof(char) << NEW_LINE;
     for (int i=0; i <= 255; i++)
     {
         cout << "Code = " << i << " Char = " << (unsigned char)i << NEW_LINE;
     }*/
     
-    //Строки и указатели. Реализация strlen своими руками
+    //Строки и указатели. Реализация strlen своими руками.
+    /*char *str = "Hellow world!";
+    cout << str << NEW_LINE;
+    char *strArr[] = {"Hello", "World", "!"};
+    for (int i = 0; i<3; i++)
+    {
+    cout << strArr[i] << NEW_LINE;
+    }
+    Foo(str);
+    Strlen_my(str);*/
     
     
 }
