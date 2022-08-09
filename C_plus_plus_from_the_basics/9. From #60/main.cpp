@@ -1,4 +1,4 @@
-//Нуль треминал. Char массив. Строки. ASCII.
+//Нуль треминал. Char массив. Строки. ASCII. Конкатенация строк.
 #include <clocale>
 #include <string>
 #include <iostream>
@@ -50,6 +50,24 @@ int main()
     Foo(str);
     Strlen_my(str);*/
     
+    //Конкатенация строк (С) и (С++)
+    char str1 [255] = "Hello world! ";
+    char str2 [255] = "It is a good day! ";
+    strcat(str1,str2); //Стиль С. Записывается в первую строку добавление второй.
+    cout << str1 << NEW_LINE;
+    char result[255]{};
+    strcat(result,str1);
+    strcat(result,str2);
+    cout << result << NEW_LINE;
+    string str3 = "Hello";//Стиль С++
+    string str4 = "World";
+    string result2;
+    result2 = str3 + str4;
+    cout << result2 << NEW_LINE;
+    str3 = "Александр";
+    str4 = "Дубельщиков";
+    result2 = "Фамилия "+str4+"\tИмя "+str3;
+    cout << result2 << NEW_LINE;
     
 }
 
