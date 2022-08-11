@@ -1,4 +1,4 @@
-//ООП. Классы. Объекты классов. Экземпляр класса. Свойства классов. Методы классов. Модификаторы доступа. Геттеры и сеттеры. Показательный пример инкапсуляции на примере кофемашины. Конструктор класса.
+//ООП. Классы. Объекты классов. Экземпляр класса. Свойства классов. Методы классов. Модификаторы доступа. Геттеры и сеттеры. Показательный пример инкапсуляции на примере кофемашины. Конструктор класса. Перегрузка конструктора класса. Деструктор класса. this.
 
 //Общая теоретическая подложка
 /*Инкапсуляция
@@ -107,7 +107,7 @@ private:
     
 };
 
-//Класс Point 2 для геттеров и сеттеров
+//Класс Point 2 для геттеров и сеттеров, конструктора класса, перегрузки конструктора
 class Point2
 {
     
@@ -116,6 +116,31 @@ private:
     int y;
     
 public:
+    
+    //Конструкторы
+    Point2()
+    {
+        x=0;
+        y=0;
+    }
+        
+    Point2(int valueX, int valueY)
+    {
+        x=valueX;
+        y=valueY;
+        
+    }
+    
+    Point2(int valueX, bool flag)
+    {
+        if (flag)
+        {
+            y=10;
+        }
+        else
+            y=0;
+    }
+    
     //Геттер и сеттер для X
     int GetX()
     {
@@ -173,6 +198,30 @@ public:
     
 };
 
+//Для изучения деструкторов
+class ForDestruct
+{
+    int* data;
+public:
+    
+    ForDestruct(int valueData)
+    {
+        
+        data = new int [valueData];
+        for (int i=0; i<valueData; i++)
+        {
+            data[i]=i;
+        }
+        cout << "Вызвался конструктор класса. Для объекта: " << data << endl;
+    }
+    
+    ~ForDestruct()
+    {   delete[] data;
+        cout << "Вызвался деструктор. Для объекта: " << data << endl;
+    }
+};
+
+void Foo();
 
 int main()
 {
@@ -238,7 +287,31 @@ int main()
     /*CoffeGrinder Redmond;
     Redmond.Start();*/
     
+    //Конструктор класса. Перегрузка конструктора класса.
+    /*Point2 position(10,10);
+    position.Print();
+    Point2 position2;
+    position2.Print();
+    Point2 position3(10,true);
+    position3.Print();
+    Point2 position4(10,false);
+    position4.Print();*/
+    
+    //Деструкторы класса
+    ForDestruct a(10);
+    Foo();
+    ForDestruct c(3);
 
 
     return 0;
+}
+
+//Функция для деструктора
+void Foo()
+{
+    cout <<"Начало Foo" << endl;
+    ForDestruct b(5);
+    cout <<"Конец Foo" << endl;
+    
+    
 }
