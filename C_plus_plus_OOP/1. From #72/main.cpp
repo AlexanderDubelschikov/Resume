@@ -1,4 +1,4 @@
-//ООП. Классы. Объекты классов. Экземпляр класса. Свойства классов. Методы классов.
+//ООП. Классы. Объекты классов. Экземпляр класса. Свойства классов. Методы классов. Модификаторы доступа. Геттеры и сеттеры. Показательный пример инкапсуляции на примере кофемашины. Конструктор класса.
 
 //Общая теоретическая подложка
 /*Инкапсуляция
@@ -56,20 +56,128 @@ public:
     int age;
     int weight;
     string name;
+    
+    void Print(int a)
+    {
+        cout << a << endl;
+    }
+    
+    void Print(string a)
+    {
+        cout << a << endl;
+    }
+    
+    void PrintAll()
+    {
+        cout << "Имя: " << "\t" << name << endl;
+        cout << "Возраст: " << "\t" << age << endl;
+        cout << "Вес: " << "\t" << weight << endl;
+        
+    }
+    
+    
 };
 
 //Пример из учебника
 class Point
 {
 public:
-    int x,y;
+    
+    int x;
+    int y;
+    
+    void Print()
+    {
+        cout << x << '\t' << y << '\t';
+        PrintZ();
+        
+    }
+
+protected:
+    int izmerenie_4;
+    
+private:
+    int z=10;
+    
+    void PrintZ()
+    {
+        cout << z << endl;
+    }
+    
     
 };
+
+//Класс Point 2 для геттеров и сеттеров
+class Point2
+{
+    
+private:
+    int x;
+    int y;
+    
+public:
+    //Геттер и сеттер для X
+    int GetX()
+    {
+        return x;
+    }
+    
+    void SetX(int valueX)
+    {
+        x=valueX;
+    }
+    
+    //Геттер и сеттер для Y
+    int GetY()
+    {
+        return y;
+    }
+    
+    void SetY(int valueY)
+    {
+        y = valueY;
+    }
+    
+    //Вывод на экран
+    void Print()
+    {
+        cout << "X: " << x<< '\t' << "Y: " << y << endl << endl;
+    }
+    
+};
+
+//Для примера инкапсуляции
+class CoffeGrinder
+{
+private:
+    
+    int Check_Volt()
+    {
+        bool isVoltGood = 1;
+        if (isVoltGood==true)
+            return 1;
+        else
+            return 0;
+    }
+    
+public:
+    void Start()
+    {
+        /*if (Check_Volt()==1)
+            cout << "Кофе-машина заработала" << endl;
+        else
+            cout << "Ошибка. Не устойчивое питание" << endl;*/
+        
+        Check_Volt()? cout << "Кофе-машина заработала" << endl : cout << "Ошибка. Не устойчивое питание" << endl;
+    }
+    
+};
+
 
 int main()
 {
     //Классы
-    Human firstHuman;
+    /*Human firstHuman;
     firstHuman.name="Alexander";
     firstHuman.age=23;
     firstHuman.weight=100;
@@ -95,7 +203,41 @@ int main()
     cin>>position.x;
     cout << "y: " << endl;
     cin>>position.y;
-    cout << "Местонахождение человеков: " << position.x << "\t" << position.y << endl;
+    cout << "Местонахождение человеков: " << position.x << "\t" << position.y << endl;*/
+    
+    //Методы
+    /*Human firstHuman;
+    firstHuman.name="Alexander";
+    firstHuman.age=23;
+    firstHuman.weight=100;
+    firstHuman.Print(firstHuman.name);
+    firstHuman.Print(firstHuman.weight);
+    firstHuman.Print(firstHuman.age);
+    cout << "===============" << endl;
+    firstHuman.PrintAll();*/
+    
+    //Модификаторы доступа
+    /*Point firstPosition;
+    firstPosition.x = 10;
+    firstPosition.y = 10;
+    firstPosition.Print();
+    //firstPosition.z=10;
+    //cout << firstPosition.z << endl;*/
+    
+    //Геттеры и сеттеры
+    /*Point2 position;
+    int value = 10;
+    position.SetX(value);
+    value = 42;
+    position.SetY(value);
+    position.Print();
+    value = position.GetX();
+    cout << value << endl;*/
+    
+    //Показательный пример инкапсуляции
+    /*CoffeGrinder Redmond;
+    Redmond.Start();*/
+    
 
 
     return 0;
