@@ -117,17 +117,20 @@ private:
     
 public:
     
-    //Конструкторы
+    //Конструкторы, this
     Point2()
     {
         x=0;
         y=0;
+        cout << this << "\tconstructor" << endl;
+
     }
         
     Point2(int valueX, int valueY)
     {
         x=valueX;
         y=valueY;
+        cout << this << "\tconstructor" << endl;
         
     }
     
@@ -158,9 +161,9 @@ public:
         return y;
     }
     
-    void SetY(int valueY)
+    void SetY(int y)
     {
-        y = valueY;
+        this->y = y;
     }
     
     //Вывод на экран
@@ -298,9 +301,17 @@ int main()
     position4.Print();*/
     
     //Деструкторы класса
-    ForDestruct a(10);
+    /*ForDestruct a(10);
     Foo();
-    ForDestruct c(3);
+    ForDestruct c(3);*/
+    
+    //This
+    Point2 pos1;
+    pos1.SetY(4);
+    pos1.Print();
+    Point2 pos2(2,3);
+    pos2.Print();
+    
 
 
     return 0;
