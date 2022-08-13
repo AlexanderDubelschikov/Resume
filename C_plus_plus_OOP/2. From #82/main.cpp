@@ -1,4 +1,4 @@
-//Конструктор копирования. Перегрузка оператора присваивания. Перегрузка равно и не равно. Перегрузка оператора сложения. 
+//Конструктор копирования. Перегрузка оператора присваивания. Перегрузка равно и не равно. Перегрузка оператора сложения. Перегрузка инкремента и дикремента. Перегрузка [].
 
 #include <iostream>
 using namespace  std;
@@ -83,7 +83,7 @@ public:
         x=0;
         y=0;
     }
-    
+
     //Опреатор равенства
     bool operator == (MyPos &other)
     {
@@ -97,8 +97,69 @@ public:
         return this->x!=other.x || this->y!=other.y;
     }
     
+    //Присваивание
+    MyPos & operator = (const MyPos &other)
+    {
+        this->x = other.x;
+        this->y = other.y;
+        
+        return *this;
+    }
     
+    MyPos operator + (const MyPos & other)
+    {
+        MyPos temp;
+        temp.x = this -> x + other.x;
+        temp.y = this -> y + other.y;
+        
+        return temp;
+
+    }
     
+    //Префиксная форма
+    MyPos & operator ++ ()
+    {
+        this->x+=1;
+        this->y+=1;
+        
+        return *this;
+    }
+    
+    //Префиксная форма
+    MyPos & operator -- ()
+    {
+        this->x-=1;
+        this->y-=1;
+        
+        return *this;
+    }
+    
+    //Постфиксная форма
+    MyPos & operator ++ (int value)
+    {
+        MyPos temp(*this);
+        
+        this->x++;
+        this->y++;
+        
+        return temp;
+
+    }
+    
+    //Постфиксная форма
+    MyPos & operator -- (int value)
+    {
+        MyPos temp(*this);
+        
+        this->x--;
+        this->y--;
+        
+        return temp;
+
+    }
+    
+    //Постфиксная форма
+
     ~MyPos()
     {
         cout << "Вызывался деструктор: " << this << endl;
@@ -110,6 +171,31 @@ public:
     }
   
 };
+
+//Перегрузка []
+class TestClass
+{
+private:
+    int Array[5]{55,44,33,22,11};
+
+public:
+    
+    int & operator [] (int index)
+    {
+        return Array[index];
+    }
+    
+    void Print()
+    {
+        for (int i=0; i<5; i++)
+        {
+            cout << this->Array[i] << endl;
+        }
+    }
+    
+};
+
+
 void Foo(MyClass value);
 MyClass Foo2();
 
@@ -131,7 +217,7 @@ int main()
     //a.operator=(b);//Эквивалент a=b;*/
 
     //Перегрузка равно и не равно
-    MyPos position1(0, 0);
+    /*MyPos position1(0, 0);
     position1.PrintPos();
     MyPos position2;
     position2.PrintPos();
@@ -139,8 +225,37 @@ int main()
     position1==position2? cout << "Они равны!" << endl : cout << "Они не равны!" << endl;
     cout <<"===================="<<endl;
     position1!=position2? cout << "Они не равны!" << endl : cout << "Они равны!" << endl;
-    cout <<"===================="<<endl;
+    cout <<"===================="<<endl;*/
     
+    //Перегрузка оператора сложения
+    /*MyPos a(10, 2);
+    MyPos b(11, 3);
+    MyPos c;
+    a=b;
+    a==b? cout << "+" << endl : cout << "-" << endl;
+    c=a+b;
+    c.PrintPos();*/
+    
+    //Перегрузка инкремента и дикремента
+    /*MyPos position;
+    position.PrintPos();
+    ++position;
+    position.PrintPos();
+    --position;
+    position.PrintPos();
+    position++;
+    position.PrintPos();
+    position--;
+    position.PrintPos();
+    MyPos position2 = position++;
+    position2.PrintPos();*/
+    
+    //Перегрузка []
+    /*TestClass a;
+    a.Print();
+    cout << "========" << endl;
+    cout << a[0] << endl;
+    cout << a[4] << endl;*/
     
 
     return 0;
