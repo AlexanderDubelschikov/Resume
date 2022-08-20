@@ -1,9 +1,10 @@
-//Дружественные функции и классы. Определение методов вне класса. Дружественный метод класса.
+//Дружественные функции и классы. Определение методов вне класса. Дружественный метод класса. Static.
 
 #include <iostream>
+#include <string>
 using namespace std;
 
-
+//Основной класс для работы
 class MyPos
 {
 private:
@@ -116,7 +117,42 @@ public:
     ~MyClass();
     void PrintMSG();
     
+};
 
+//Для темы дружественные методы класса
+class Human;
+class Apple;
+
+class Human
+{
+public:
+    void TakeApple(Apple &apple);
+    void EatApple(Apple &apple);
+    
+};
+
+class Apple
+{
+public:
+    Apple(int weight, string color)
+    {
+        this->weight=weight;
+        this->color=color;
+    }
+    
+    void PrintInfo()
+    {
+        cout << "Человек взял яблоко!" << endl;
+        cout << "Вес: " << weight << '\t' << "Цвет: " << color << endl;
+    }
+    
+    //friend void Human::TakeApple(Apple &apple);
+    friend Human;
+    
+private:
+    int weight;
+    string color;
+    
 };
 
 
@@ -132,9 +168,16 @@ int main() {
     /*MyClass a;
     a.PrintMSG();*/
     
-    //Дружественный метод класса
+    //Дружественный метод класса (требуется также раскомментировать строчку friend в Apple)
+    /*Apple apple(2,"red");
+    Human odin;
+    odin.TakeApple(apple);*/
     
-    
+    //Дружественный класс
+    Apple apple(2,"red");
+    Human odin;
+    odin.TakeApple(apple);
+    odin.EatApple(apple);
     
     
     return 0;
@@ -164,4 +207,15 @@ void ChangeX(MyPos &value)
     value.x=10;
 }
 
+//Вне класса
+void Human::TakeApple(Apple &apple)
+{
+    apple.PrintInfo();
+}
+
+void Human::EatApple(Apple &apple)
+{
+    cout << "Человек съел яблоко"<<endl;
+    apple.PrintInfo();
+}
 
