@@ -1,4 +1,5 @@
-//Дружественные функции и классы. Определение методов вне класса. Дружественный метод класса. Static.
+//Дружественные функции и классы. Определение методов вне класса. Дружественный метод класса.
+//Дружественный класс. Static. Id generator. Статичкские методы.
 
 #include <iostream>
 #include <string>
@@ -131,19 +132,32 @@ public:
     
 };
 
+//Friend. Static. Id generator.
 class Apple
 {
 public:
+    
+    static int count;
+    
     Apple(int weight, string color)
     {
         this->weight=weight;
         this->color=color;
+        this->id=count;
+        Apple::count=Apple::count+1;
+        
     }
     
     void PrintInfo()
     {
         cout << "Человек взял яблоко!" << endl;
         cout << "Вес: " << weight << '\t' << "Цвет: " << color << endl;
+        cout << "ID: " << this->id <<endl;
+    }
+    
+    void Kolovo()
+    {
+        cout << "Количество яблок равно: " << Apple::count << endl;
     }
     
     //friend void Human::TakeApple(Apple &apple);
@@ -152,8 +166,11 @@ public:
 private:
     int weight;
     string color;
+    int id;
     
 };
+
+int Apple::count = 0;
 
 
 int main() {
@@ -174,11 +191,19 @@ int main() {
     odin.TakeApple(apple);*/
     
     //Дружественный класс
-    Apple apple(2,"red");
+    /*Apple apple(2,"red");
     Human odin;
     odin.TakeApple(apple);
-    odin.EatApple(apple);
+    odin.EatApple(apple);*/
     
+    //Static. Id generator.
+    Apple apple(20, "red");
+    apple.PrintInfo();
+    apple.Kolovo();
+    Apple apple2(30, "red-yellow");
+    apple2.PrintInfo();
+    apple2.Kolovo();
+
     
     return 0;
 }
