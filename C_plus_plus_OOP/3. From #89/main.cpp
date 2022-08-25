@@ -1,5 +1,6 @@
 //Дружественные функции и классы. Определение методов вне класса. Дружественный метод класса.
-//Дружественный класс. Static. Id generator. Статичкские методы.
+//Дружественный класс. Static. Id generator. Статичкские методы. Вложенный класс. Массив объектов класса.
+//Динамический. Статический. Агрегация и композиция.
 
 #include <iostream>
 #include <string>
@@ -132,12 +133,10 @@ public:
     
 };
 
-//Friend. Static. Id generator.
+//Friend. Static. Id generator. Статический метод.
 class Apple
 {
 public:
-    
-    static int count;
     
     Apple(int weight, string color)
     {
@@ -160,6 +159,16 @@ public:
         cout << "Количество яблок равно: " << Apple::count << endl;
     }
     
+    static int GetCount()
+    {
+        return count;
+    }
+    
+    static void ChangeColor(Apple &apple)
+    {
+        apple.color="green";
+    }
+    
     //friend void Human::TakeApple(Apple &apple);
     friend Human;
     
@@ -167,11 +176,125 @@ private:
     int weight;
     string color;
     int id;
+    static int count;
     
 };
 
 int Apple::count = 0;
 
+//Для вложенного класса
+class Image
+{
+public:
+    void GetImageInfo()
+    {
+        for (int i=0; i<5; i++)
+        {
+            cout << pixels[i].GetInfo() << endl;
+        }
+    }
+    
+    class Pixel
+    {
+    public:
+        
+        Pixel(int r, int g, int b)
+        {   this-> r = r;
+            this-> g = g;
+            this-> b = b;
+        }
+        
+        string GetInfo()
+        {
+            return "Pixel: "+to_string(r)+"/"+to_string(g)+"/"+to_string(b);
+        }
+    private:
+        int r;
+        int g;
+        int b;
+    };
+    
+private:
+    
+    Pixel pixels[5]
+    {
+        Pixel(10,20,30),
+        Pixel(11,22,33),
+        Pixel(12,23,34),
+        Pixel(13,14,15),
+        Pixel(1,2,3)
+    };
+    
+};
+
+//Массив объектов класса
+class Pixel
+{
+public:
+    Pixel()
+    {
+        r=g=b=0;
+    }
+    
+    Pixel(int r, int g, int b)
+    {   this-> r = r;
+        this-> g = g;
+        this-> b = b;
+    }
+    
+    string GetInfo()
+    {
+        return "Pixel: "+to_string(r)+"/"+to_string(g)+"/"+to_string(b);
+    }
+    
+private:
+    int r;
+    int g;
+    int b;
+};
+
+//Агрегация композиция (brain - композиция. cap - Human агрегация).
+class Cap
+{
+public:
+    string GetColor()
+    {
+        return color;
+    }
+
+private:
+    string color = "red";
+    
+private:
+    
+};
+
+class Human1
+{
+public:
+    void Think()
+    {
+        brain.Think();
+    }
+    
+    void CapCap()
+    {
+        cout<<"Цвет кепки: " << cap.GetColor() << endl;
+    }
+    
+private:
+    class Mind
+    {
+    public:
+        void Think()
+        {
+            cout << "Думаю" << endl;
+        }
+    };
+    
+    Mind brain;
+    Cap cap;
+};
 
 int main() {
     
@@ -196,13 +319,56 @@ int main() {
     odin.TakeApple(apple);
     odin.EatApple(apple);*/
     
-    //Static. Id generator.
-    Apple apple(20, "red");
+    //Static. Id generator. Статический метод.
+    /*Apple apple(20, "red");
     apple.PrintInfo();
     apple.Kolovo();
     Apple apple2(30, "red-yellow");
     apple2.PrintInfo();
     apple2.Kolovo();
+    Apple apple3(30, "red-yellow");
+    cout << Apple::GetCount() << endl;
+    Apple::ChangeColor(apple3);
+    apple3.PrintInfo();*/
+    
+    //Вложенный класс
+    /*Image img;
+    img.GetImageInfo();
+    Image::Pixel pixel(3,3,3);
+    cout << pixel.GetInfo() << endl;*/
+    
+    //Массив объектов класса
+    /*const int LENGHT = 5;
+    Pixel ArrPixel[LENGHT];
+    for (int i=0; i<LENGHT; i++)
+    {
+        ArrPixel[i]=Pixel(1,2,3);
+    }
+    for (int i=0; i<LENGHT; i++)
+    {
+        cout <<ArrPixel[i].GetInfo() << endl;
+    }
+    
+    cout << "===================" << endl;
+    
+    int Lenght2;
+    Lenght2 = 5;
+    Pixel *ArrPixel2 = new Pixel [Lenght2];
+    for (int i=0; i<Lenght2; i++)
+    {
+        ArrPixel2[i]=Pixel(1,2,3);
+    }
+    for (int i=0; i<Lenght2; i++)
+    {
+        cout <<ArrPixel2[i].GetInfo() << endl;
+    }
+    delete [] ArrPixel2;*/
+    
+    //Агрегация и композиция
+    Human1 human;
+    human.Think();
+    human.CapCap();
+    
 
     
     return 0;
@@ -243,4 +409,6 @@ void Human::EatApple(Apple &apple)
     cout << "Человек съел яблоко"<<endl;
     apple.PrintInfo();
 }
+
+
 
