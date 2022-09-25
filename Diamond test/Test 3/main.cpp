@@ -77,7 +77,7 @@ void ShowAll (vector <hdr> Pars)
         cout << "Время нижние байты: " << var.time1 << endl;
         cout << "Время верхние байты: " << var.time2 << endl;
         cout << "ID: " << var.id << endl;
-        var.status>3? cout << "Ошибка, некорректное состояние. Ошибка." << endl : cout << "Состояние: " << unsigned(var.status) << endl;
+        var.status>4? cout << "Ошибка, некорректное состояние. Ошибка." << endl : cout << "Состояние: " << unsigned(var.status) << endl;
         cout << "Размер: " << unsigned(var.size) << endl;
         cout << "Тип: " << unsigned(var.type) << endl;
         cout << "Рзерв: " << unsigned(var.reserv) << endl;
